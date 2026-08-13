@@ -1,0 +1,104 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand-50: #eef2fe;
+  --color-brand-100: #e5f0fd;
+  --color-brand-200: #c7d4fc;
+  --color-brand-300: #9ab0f9;
+  --color-brand-400: #6285f5;
+  --color-brand-500: #2b56f0;
+  --color-brand-600: #1f43d1;
+  --color-brand-700: #1934a5;
+  --color-brand-800: #182d82;
+  --color-brand-900: #172a6a;
+
+  --color-ink-500: #6b6a6a;
+  --color-ink-700: #3d3d3d;
+  --color-ink-800: #2c2a2a;
+  --color-ink-900: #211f1f;
+
+  --color-steel-50: #f4f7fd;
+  --color-steel-100: #e8edf6;
+  --color-steel-200: #d6dfec;
+  --color-steel-300: #abb8c7;
+  --color-steel-400: #8b98a9;
+  --color-steel-500: #64748b;
+
+  --color-mint-300: #8cefcd;
+  --color-mint-400: #57e5b2;
+  --color-mint-600: #10855f;
+  --color-lime-300: #e2ef83;
+  --color-lime-500: #b9cc3a;
+
+  --color-danger-50: #fdf2f2;
+  --color-danger-200: #f7c9c9;
+  --color-danger-500: #cf2e2e;
+  --color-danger-700: #9b1c1c;
+
+  --color-amber-50: #fdf6e7;
+  --color-amber-500: #d99512;
+
+  --radius-control: 5px;
+
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  --shadow-panel: 0 24px 60px -28px rgb(33 31 31 / 0.28);
+  --shadow-card:
+    0 1px 2px rgb(33 31 31 / 0.04), 0 8px 24px -16px rgb(33 31 31 / 0.18);
+
+  --animate-rise: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-dash: dash 2.4s linear infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-steel-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
