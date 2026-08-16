@@ -17,6 +17,11 @@ const NAV_ITEMS = [
     label: 'Network',
     icon: 'M3 12h4l2.5-6 4 12L16 12h5',
   },
+  {
+    to: '/account',
+    label: 'Access',
+    icon: 'M12 3 4 6.5v5c0 4.5 3.3 8.4 8 9.5 4.7-1.1 8-5 8-9.5v-5L12 3Z',
+  },
 ] as const
 
 export function AppShell({ children }: { children: ReactNode }) {

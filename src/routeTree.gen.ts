@@ -14,6 +14,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as MfaRouteImport } from './routes/mfa'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -39,17 +40,24 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/login': typeof LoginRoute
   '/mfa': typeof MfaRoute
   '/signup': typeof SignupRoute
+  '/account': typeof AuthenticatedAccountRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/mfa': typeof MfaRoute
   '/signup': typeof SignupRoute
+  '/account': typeof AuthenticatedAccountRoute
   '/': typeof AuthenticatedIndexRoute
 }
 export interface FileRoutesById {
@@ -58,19 +66,21 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/mfa': typeof MfaRoute
   '/signup': typeof SignupRoute
+  '/_authenticated/account': typeof AuthenticatedAccountRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/mfa' | '/signup'
+  fullPaths: '/' | '/login' | '/mfa' | '/signup' | '/account'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/mfa' | '/signup' | '/'
+  to: '/login' | '/mfa' | '/signup' | '/account' | '/'
   id:
     | '__root__'
     | '/_authenticated'
     | '/login'
     | '/mfa'
     | '/signup'
+    | '/_authenticated/account'
     | '/_authenticated/'
   fileRoutesById: FileRoutesById
 }
@@ -118,14 +128,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/account': {
+      id: '/_authenticated/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AuthenticatedAccountRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAccountRoute: AuthenticatedAccountRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
 }
 
