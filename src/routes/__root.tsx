@@ -55,7 +55,7 @@ function NotFound() {
         </h1>
       </div>
       <Link
-        to="/login"
+        to="/"
         className="rounded-control bg-brand-500 px-5 py-2.5 text-sm font-medium text-white
           transition-colors hover:bg-brand-600"
       >
